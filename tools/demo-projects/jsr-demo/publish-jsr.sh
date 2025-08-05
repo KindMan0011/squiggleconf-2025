@@ -3,7 +3,7 @@
 # Example script showing JSR publishing workflow
 
 # Check for JSR CLI
-if ! command -v jsr &>/dev/null; then
+if ! command -v jsr &> /dev/null; then
   echo "JSR CLI not found. Installing..."
   deno install -A -r https://jsr.io/jsr.js
 fi
@@ -18,7 +18,7 @@ echo "Initializing JSR package..."
 jsr init
 
 # Create main module file
-cat >mod.ts <<EOF
+cat > mod.ts << EOF
 /**
  * My JSR Package
  * A simple utility library
@@ -48,7 +48,7 @@ EOF
 
 # Create a test file
 mkdir -p tests
-cat >tests/mod_test.ts <<EOF
+cat > tests/mod_test.ts << EOF
 import { add, subtract, format } from "../mod.ts";
 import { assertEquals } from "@std/assert";
 
@@ -69,7 +69,7 @@ Deno.test("format works", () => {
 EOF
 
 # Create a README
-cat >README.md <<'EOF'
+cat > README.md << EOF
 # My JSR Package
 
 A simple utility library published to JSR.
@@ -85,11 +85,11 @@ import { add, subtract, format } from "@username/my-jsr-package";
 
 ```ts
 // Basic math
-console.log(add(1, 2)); // 3
-console.log(subtract(5, 2)); // 3
+add(1, 2); // 3
+subtract(5, 2); // 3
 
 // String formatting
-console.log(format("Hello, ${name}!", { name: "World" })); // "Hello, World!"
+format("Hello, \${name}!", { name: "World" }); // "Hello, World!"
 ```
 EOF
 

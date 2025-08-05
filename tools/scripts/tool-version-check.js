@@ -67,11 +67,7 @@ function checkAllTools() {
   });
   
   // Save results to markdown file
-  try {
-    fs.writeFileSync('../diagrams/tool-versions.md', markdownOutput);
-  } catch (error) {
-    console.error('Error writing markdown file:', error.message);
-  }
+  fs.writeFileSync('../diagrams/tool-versions.md', markdownOutput);
   
   // Summary
   const available = results.filter(r => r.available).length;
