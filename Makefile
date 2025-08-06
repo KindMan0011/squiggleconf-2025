@@ -1,6 +1,10 @@
 # SquiggleConf 2025 Notes Makefile - FreeBSD
 
-.PHONY: all validate-org lint-basic lint lint-shell lint-js lint-go lint-rust lint-python lint-json lint-fennel lint-janet lint-hy lint-racket lint-ocaml lint-zig lint-ruby lint-clojure tangle export-html export-pdf export-md export clean help
+# Project Configuration
+PROJECT_NAME := squiggleconf-2025
+PROJECT_ROOT := $(shell pwd)
+
+.PHONY: all validate-org lint-basic lint lint-shell lint-js lint-go lint-rust lint-python lint-json lint-fennel lint-janet lint-hy lint-racket lint-ocaml lint-zig lint-ruby lint-clojure tangle export-html export-pdf export-md export clean help tmux-emacs tmux-scheme
 
 # Build target (not default)
 all: validate-org tangle ## Run validation and tangle
@@ -161,11 +165,35 @@ clean: ## Remove generated files
 	@find . -name "*.pdf" -delete
 	@find . -name "*.tex" -delete
 
+# Tmux + Emacs targets for Scheme development
+tmux-emacs: ## Start Emacs with project config in tmux session
+	@echo "Starting tmux session '$(PROJECT_NAME)' with project-specific Emacs..."
+	@tmux has-session -t $(PROJECT_NAME) 2>/dev/null && tmux kill-session -t $(PROJECT_NAME) || true
+	@tmux new-session -d -s $(PROJECT_NAME) "emacs -nw -Q -l $(PROJECT_ROOT)/$(PROJECT_NAME).el"
+	@echo "Getting TTY of tmux pane..."
+	@tmux list-panes -t $(PROJECT_NAME) -F "TTY: #{pane_tty}"
+	@echo ""
+	@echo "Tmux session '$(PROJECT_NAME)' started successfully."
+	@echo "To attach: tmux attach-session -t $(PROJECT_NAME)"
+
+tmux-scheme: ## Start Emacs with Scheme/Guile config in tmux session
+	@echo "Starting tmux session '$(PROJECT_NAME)-scheme' with Scheme development Emacs..."
+	@tmux has-session -t $(PROJECT_NAME)-scheme 2>/dev/null && tmux kill-session -t $(PROJECT_NAME)-scheme || true
+	@tmux new-session -d -s $(PROJECT_NAME)-scheme "emacs -nw -Q -l $(PROJECT_ROOT)/squiggleconf-scheme.el"
+	@echo "Getting TTY of tmux pane..."
+	@tmux list-panes -t $(PROJECT_NAME)-scheme -F "TTY: #{pane_tty}"
+	@echo ""
+	@echo "Tmux session '$(PROJECT_NAME)-scheme' started with Scheme development environment."
+	@echo "To attach: tmux attach-session -t $(PROJECT_NAME)-scheme"
+
 # Help message using GNU tools available on FreeBSD
 help: ## Show this help message
 	@echo "SquiggleConf 2025 Notes Makefile"
 	@echo ""
+	@echo "Project: $(PROJECT_NAME)"
+	@echo "Root: $(PROJECT_ROOT)"
+	@echo ""
 	@echo "Usage: gmake [target]"
 	@echo ""
 	@echo "Targets:"
-	@ggrep -E '^[a-zA-Z_-]+:.*##' $(MAKEFILE_LIST) | gawk 'BEGIN {FS = ":.*## "}; {printf "  %-12s %s\n", $$1, $$2}'
+	@ggrep -E '^[a-zA-Z_-]+:.*##' $(MAKEFILE_LIST) | gawk 'BEGIN {FS = ":.*## "}; {printf "  %-15s %s\n", $$1, $$2}'
